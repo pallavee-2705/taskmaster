@@ -6,6 +6,7 @@ const app = express();
 
 //for including the environment variables
 require('dotenv').config();
+require('./db');
 const PORT = 8000;
 
 
