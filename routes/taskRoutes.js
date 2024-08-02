@@ -9,4 +9,10 @@ router.get('/test', auth, (req,res) => {
 
 
 //CRUD tasks for uathenticated users 
+
+//API for Creating a task
+router.post('/createtask', auth, async (req, res) => {
+    try{
+    }
+});
 module.exports = router; 
