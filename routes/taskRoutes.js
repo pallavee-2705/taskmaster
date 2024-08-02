@@ -16,15 +16,15 @@ router.post('/createtask', auth, async (req, res) => {
         //While creating the tasks, title, description, status, createdat are required 
         const task = new Task({
             ...req.body,
-            owner: req.user_id
+            owner: req.user._id
         });
         await task.save();
         res.status(201).json({task, message: "Task Created Successfully"});
     }
     catch(err){ 
 
-    }
         res.status(400).send({error: "Failed to complete task"});
+    }
 });
 
 //Get a list of tasks specific to a particular user
@@ -40,6 +40,36 @@ router.get('/gettask', auth, async (req, res) => {
     }
 });
 
+//API end point for Updating a task by id - description and status
+router.patch('/updatetask/:id', auth, async (req, res) =>{
+    const taskid = req.params.id;
+    const updates = Object.keys(req.body);
+   
+    const allowedUpdates = ['description', 'status'];
+    const isValidOperation = updates.every(update => allowedUpdates.includes(update));
+        if(!isValidOperation){
+            return res.status(400).json({error: "Invalid Operation"})
+        }
+    try{
+        const task = await Task.findOne({
+            _id: taskid,
+            owner: req.user._id
+        });
+        if(!task){
+            return res.status(404).json({message: "Task not found"});
+        }
 
+        updates.forEach(update => task[update] = req.body[update]);
+        await task.save();
+
+        res.json({
+            message: "Task Updated Successfully",
+            task
+        })
+    }
+    catch(err){
+        res.status(500).send({error: err});
+    }
+});
 
 module.exports = router; 
