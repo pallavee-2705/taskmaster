@@ -6,6 +6,7 @@ const app = express();
 
 //define user routes
 const userRoutes = require('./routes/userRoutes');
+const taskRoutes = require('./routes/taskRoutes');
 
 //for including the environment variables
 require('dotenv').config();
@@ -15,6 +16,7 @@ const PORT = 8000;
 
 app.use(bodyParser.json());
 app.use('/users' , userRoutes);
+app.use('/tasks' , taskRoutes);
 
 
 app.get ('/',(req,res) => {

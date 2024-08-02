@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
+//register the user
 //try catch block for registration of user 
 //if user is registered successfully then the message will be sent
 router.post('/register', async (req, res) => {
@@ -22,6 +22,7 @@ catch (err){
 }
 });
 
+//login the user
 //try catch block for login of user
 router.post('/login', async (req,res) => {
     try{
@@ -65,9 +66,5 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) =>{
 
 });
-//register the user
-
-//login the user
-
 
 module.exports = router;
