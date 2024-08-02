@@ -24,6 +24,22 @@ router.post('/createtask', auth, async (req, res) => {
     catch(err){ 
 
     }
-        res.status(400).send({error: err});
+        res.status(400).send({error: "Failed to complete task"});
 });
+
+//Get a list of tasks specific to a particular user
+router.get('/gettask', auth, async (req, res) => {
+    try{
+        const task = await Task.find({
+            owner: req.user_id
+        })
+        res.status(200).json({task, count:task.length, message: "Task fetched Successfully"});
+    }
+    catch(err){
+        res.status(500).send({error: err});
+    }
+});
+
+
+
 module.exports = router; 
