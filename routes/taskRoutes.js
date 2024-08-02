@@ -72,4 +72,25 @@ router.patch('/updatetask/:id', auth, async (req, res) =>{
     }
 });
 
+
+// API endpoint for Deleting a task by id
+router.delete('/deletetask/:id', auth, async (req, res) => {
+    try {
+        console.log('User ID:', req.user._id);
+        console.log('Task ID:', req.params.id);
+        const task = await Task.findOneAndDelete({
+            _id: req.params.id,
+            owner: req.user._id
+        });
+
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        res.json({ message: "Task deleted successfully", task });
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
 module.exports = router; 
