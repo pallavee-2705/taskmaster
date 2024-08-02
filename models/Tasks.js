@@ -6,13 +6,11 @@ const bcrypt = require('bcrypt');
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     description: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     status: {
         type: String,
@@ -29,13 +27,11 @@ const taskSchema = new mongoose.Schema({
     }
 });
 
-
 // Updating the `updatedAt` field before saving the document
 taskSchema.pre('save', function (next) {
     this.updatedAt = Date.now();
     next();
 });
-
 
 //Creating the task Model
 const Task = mongoose.model('Task', taskSchema);
