@@ -31,7 +31,7 @@ router.post('/createtask', auth, async (req, res) => {
 router.get('/gettask', auth, async (req, res) => {
     try{
         const task = await Task.find({
-            owner: req.user_id
+            owner: req.user._id
         })
         res.status(200).json({task, count:task.length, message: "Task fetched Successfully"});
     }
