@@ -14,7 +14,7 @@ router.post('/register', async (req, res) => {
     res.status(201).send({ user, message:'User created successfully'});
 }
 catch (err){
-    res.status(400).send({error:err});
+    res.status(400).send({ error: 'Unable to register' });
 }
 });
 
@@ -40,7 +40,7 @@ router.post('/login', async (req,res) => {
         res.send({user, token, message:"Logged in successfully" });
     }
     catch (err) {
-        res.status(400).send({erro: err});
+        res.status(400).send({error: err.message});
     }
 });
 router.get('/', (req, res) =>{

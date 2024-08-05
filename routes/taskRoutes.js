@@ -36,7 +36,7 @@ router.get('/gettasks', auth, async (req, res) => {
         res.status(200).json({task, count:task.length, message: "Task fetched Successfully"});
     }
     catch(err){
-        res.status(500).send({error: err});
+        res.status(401).send({ error: 'Unable to authenticate' });
     }
 });
 
