@@ -26,7 +26,7 @@ router.post('/createtask', auth, async (req, res) => {
     }
 });
 
-//Retrieve a list of all tasks after user is authenticated, since user cannot have access to other users tasks 
+//Retrieve a list of all tasks after user is authenticated
 router.get('/gettasks', auth, async (req, res) => {
     try{
         const task = await Task.find({
