@@ -1,8 +1,6 @@
-
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
-// Define the Task Schema
+// Defining the Task Schema
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -25,7 +23,6 @@ const taskSchema = new mongoose.Schema({
     //Enabling timestamp
     timestamps: true 
 });
-
 
 //Creating the task Model
 const Task = mongoose.model('Task', taskSchema);
