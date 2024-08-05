@@ -33,8 +33,12 @@ TaskMaster is a Node.js application for managing tasks. This application provide
 
 ### Start the Application
 To start the application in development mode, use:
-nodemon
 
+```
+npm install -g nodemon
+
+nodemon
+```
 
 ### 3. API Documentation
 The API documentation is available via Swagger UI:
