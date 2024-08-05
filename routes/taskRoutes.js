@@ -7,12 +7,12 @@ router.get('/test', auth, (req, res) => {
     res.send({ message: 'task routes are working!', user: req.user });
 });
 
-//CRUD tasks for uathenticated users 
+//CRUD tasks for authenticated users 
 
 //API for Creating a task
 router.post('/createtask', auth, async (req, res) => {
     try{ 
-        //While creating the tasks, title, description, status, createdat are required 
+        //While creating the tasks, title, description, status are required 
         const task = new Task({
             ...req.body,
             owner: req.user._id
