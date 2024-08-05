@@ -28,18 +28,6 @@ TaskMaster is a Node.js application for managing tasks. This application provide
    npm install
 ```
 
-
-## 2. Usage
-
-### Start the Application
-To start the application in development mode, use:
-
-```
-npm install -g nodemon
-nodemon
-```
-By default, the application will run on http://localhost:8000.
-
 ### 3. API Documentation
 The API documentation is available on Postman. This documentation provides detailed information about all available endpoints, including request types, parameters, and response formats. It also includes examples of requests and responses to help you understand how to interact with the API.
 
@@ -52,8 +40,18 @@ In the Postman documentation, you will find:
 - Response Examples: Examples of the responses you can expect from the API, including success and error cases.
 - Authentication Information: Instructions on how to provide authentication tokens to access protected endpoints.
 
+## 2. Running the Application
 
-## 4 Docker Setup
+### Using Nodemon
+To start the application in development mode, use:
+
+```
+npm install -g nodemon
+nodemon
+```
+By default, the application will run on http://localhost:8000.
+
+### Using Docker
 
 ### Prerequisites
 Docker installed on your machine.
