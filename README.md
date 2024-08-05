@@ -34,7 +34,6 @@ TaskMaster is a Node.js application for managing tasks. This application provide
    cd taskmaster
    npm install
 
-
 ## 2. Usage
 
 ### Start the Application
@@ -52,32 +51,27 @@ Docker installed on your machine.
 
 ### Steps:
 
-1. Build Docker image:
-   
- ```bash
+#### 1. Build Docker image:
+```
 docker build -t taskmaster-app .
+```
 
-
-2. Run Docker Container:
-
- ```bash
+#### 2. Run Docker Container:
+```
 docker run -p 8000:8000 taskmaster-app
-
-
+```
 This maps port 8000 of your local machine to port 8000 in the Docker container.
 
-
-3. To Stop Docker Container:
-
- ```bash
+#### 3. To Stop Docker Container:
 To stop the Docker container, first find the container ID using:
+```
 docker ps
+```
 
-
-Then stop the container using:
-
- ```bash
+#### 4.Then stop the container using:
+```
 docker stop <container-id>
-
+```
 
 Replace <container-id> with the actual ID of your running container.
+
