@@ -57,12 +57,15 @@ Docker installed on your machine.
  ```bash
 docker build -t taskmaster-app .
 
+
 2. Run Docker Container:
 
  ```bash
 docker run -p 8000:8000 taskmaster-app
 
+
 This maps port 8000 of your local machine to port 8000 in the Docker container.
+
 
 3. To Stop Docker Container:
 
@@ -70,9 +73,11 @@ This maps port 8000 of your local machine to port 8000 in the Docker container.
 To stop the Docker container, first find the container ID using:
 docker ps
 
+
 Then stop the container using:
 
  ```bash
 docker stop <container-id>
+
 
 Replace <container-id> with the actual ID of your running container.
