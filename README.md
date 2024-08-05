@@ -36,9 +36,9 @@ To start the application in development mode, use:
 
 ```
 npm install -g nodemon
-
 nodemon
 ```
+By default, the application will run on http://localhost:8000.
 
 ### 3. API Documentation
 The API documentation is available via Swagger UI:
@@ -76,3 +76,8 @@ docker stop <container-id>
 
 Replace <container-id> with the actual ID of your running container.
 
+## 5. Checking Out the Project
+After running the project successfully, you can check it out by visiting:
+
+http://localhost:8000
+Open this URL in your web browser to access the TaskMaster application.
