@@ -14,29 +14,18 @@ const taskSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Pending', 'In Progress', 'Completed'],
-        default: 'Pending'
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
+        required: true
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     }
+}, {
+    //Enabling timestamp
+    timestamps: true 
 });
 
-// Updating the `updatedAt` field before saving the document
-taskSchema.pre('save', function (next) {
-    this.updatedAt = Date.now();
-    next();
-});
 
 //Creating the task Model
 const Task = mongoose.model('Task', taskSchema);
