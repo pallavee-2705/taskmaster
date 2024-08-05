@@ -26,8 +26,8 @@ router.post('/createtask', auth, async (req, res) => {
     }
 });
 
-//Get a list of tasks specific to a particular user
-router.get('/gettask', auth, async (req, res) => {
+//Retrieve a list of all tasks after user is authenticated, since user cannot have access to other users tasks 
+router.get('/gettasks', auth, async (req, res) => {
     try{
         const task = await Task.find({
             owner: req.user._id
@@ -39,40 +39,62 @@ router.get('/gettask', auth, async (req, res) => {
     }
 });
 
-//API end point for Updating a task by id - description and status
-router.patch('/updatetask/:id', auth, async (req, res) =>{
-    const taskid = req.params.id;
-    const updates = Object.keys(req.body);
-   
-    const allowedUpdates = ['description', 'status'];
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update));
-        if(!isValidOperation){
-            return res.status(400).json({error: "Invalid Operation"})
-        }
-    try{
+// Retrieve a single task by ID after user is authenticated
+router.get('/gettaskbyid/:id', auth, async (req, res) => {
+    try {
         const task = await Task.findOne({
-            _id: taskid,
+            _id: req.params.id,
             owner: req.user._id
         });
-        if(!task){
-            return res.status(404).json({message: "Task not found"});
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
         }
-
-        updates.forEach(update => task[update] = req.body[update]);
-        await task.save();
-
-        res.json({
-            message: "Task Updated Successfully",
-            task
-        })
-    }
-    catch(err){
-        res.status(500).send({error: err});
+        res.status(200).json({ task, message: "Task fetched successfully" });
+    } catch (err) {
+        res.status(500).send({ error: err });
     }
 });
 
+// API endpoint for updating an existing task by ID
+router.put('/updatetasks/:id', auth, async (req, res) => {
+    const taskId = req.params.id;
+    const updates = req.body;  // Get all fields from the request body
 
-// API endpoint for Deleting a task by id
+    // Specifying the Allowed updates
+    const allowedUpdates = ['title', 'description', 'status'];
+    const updatesKeys = Object.keys(updates);
+
+    // Validate the updates
+    const isValidOperation = updatesKeys.every(update => allowedUpdates.includes(update));
+    if (!isValidOperation) {
+        return res.status(400).json({ error: "Invalid updates!" });
+    }
+
+    try {
+        // Find the task and update it
+        const task = await Task.findOne({
+            _id: taskId,
+            owner: req.user._id
+        });
+
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        // Apply updates
+        updatesKeys.forEach(key => task[key] = updates[key]);
+        await task.save();
+
+        res.status(200).json({
+            message: "Task Updated Successfully",
+            task
+        });
+    } catch (err) {
+        res.status(500).send({ error: err.message });
+    }
+});
+
+// API endpoint for Deleting a task by ID
 router.delete('/deletetask/:id', auth, async (req, res) => {
     try {
         const task = await Task.findOneAndDelete({
@@ -84,7 +106,8 @@ router.delete('/deletetask/:id', auth, async (req, res) => {
             return res.status(404).json({ message: "Task not found" });
         }
 
-        res.json({ message: "Task deleted successfully", task });
+        // Send a 204 No Content response
+        res.status(204).send({message: "Task Deleted successfully"});
     } catch (err) {
         res.status(500).send({ error: err.message });
     }
