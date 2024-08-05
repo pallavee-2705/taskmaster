@@ -41,8 +41,16 @@ nodemon
 By default, the application will run on http://localhost:8000.
 
 ### 3. API Documentation
-The API documentation is available via Swagger UI:
-Swagger UI: http://localhost:8000/api-docs
+The API documentation is available on Postman. This documentation provides detailed information about all available endpoints, including request types, parameters, and response formats. It also includes examples of requests and responses to help you understand how to interact with the API.
+
+Postman Documentation Link: https://documenter.getpostman.com/view/24266746/2sA3rxpYVU 
+
+In the Postman documentation, you will find:
+
+- Detailed Descriptions: Each endpoint is described in detail, including its purpose and functionality.
+- Request Examples: Examples of how to format requests to each endpoint.
+- Response Examples: Examples of the responses you can expect from the API, including success and error cases.
+- Authentication Information: Instructions on how to provide authentication tokens to access protected endpoints.
 
 
 ## 4 Docker Setup
