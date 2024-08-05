@@ -6,7 +6,7 @@ TaskMaster is a Node.js application for managing tasks. This application provide
 
 - Create, read, update, and delete tasks
 - User authentication and authorization
-- API documentation using Swagger
+- API documentation using Postman
 - Docker containerization for easy deployment
 
 
