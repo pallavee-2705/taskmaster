@@ -31,6 +31,7 @@ router.get('/gettasks', auth, async (req, res) => {
     try{
         const task = await Task.find({
             owner: req.user._id
+            //api will return all the tasks which match the user
         })
         res.status(200).json({task, count:task.length, message: "Task fetched Successfully"});
     }
@@ -45,8 +46,9 @@ router.get('/gettaskbyid/:id', auth, async (req, res) => {
         const task = await Task.findOne({
             _id: req.params.id,
             owner: req.user._id
+            //api will only return the task which matches the id
         });
-        if (!task) {
+        if (!task) { 
             return res.status(404).json({ message: "Task not found" });
         }
         res.status(200).json({ task, message: "Task fetched successfully" });
@@ -60,28 +62,25 @@ router.put('/updatetasks/:id', auth, async (req, res) => {
     const taskId = req.params.id;
     const updates = req.body;  // Get all fields from the request body
 
-    // Specifying the Allowed updates
+    // Specifying the Allowed fields
     const allowedUpdates = ['title', 'description', 'status'];
     const updatesKeys = Object.keys(updates);
 
-    // Validate the updates
+    // Validating the updates
     const isValidOperation = updatesKeys.every(update => allowedUpdates.includes(update));
     if (!isValidOperation) {
         return res.status(400).json({ error: "Invalid updates!" });
     }
 
     try {
-        // Find the task and update it
+        // Finding the task by id
         const task = await Task.findOne({
             _id: taskId,
             owner: req.user._id
         });
-
         if (!task) {
             return res.status(404).json({ message: "Task not found" });
         }
-
-        // Apply updates
         updatesKeys.forEach(key => task[key] = updates[key]);
         await task.save();
 
@@ -97,6 +96,7 @@ router.put('/updatetasks/:id', auth, async (req, res) => {
 // API endpoint for Deleting a task by ID
 router.delete('/deletetask/:id', auth, async (req, res) => {
     try {
+        //retrieving task by id to delete it 
         const task = await Task.findOneAndDelete({
             _id: req.params.id,
             owner: req.user._id
@@ -106,7 +106,6 @@ router.delete('/deletetask/:id', auth, async (req, res) => {
             return res.status(404).json({ message: "Task not found" });
         }
 
-        // Send a 204 No Content response
         res.status(204).send({message: "Task Deleted successfully"});
     } catch (err) {
         res.status(500).send({ error: err.message });

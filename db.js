@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-
-
 const MONGO_URL = process.env.MONGO_URL;
 const DB_NAME = process.env.DB_NAME;
-
 
 //defining a promise for resolve case and error case for connection to database
 mongoose.connect(MONGO_URL,{
