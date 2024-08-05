@@ -9,13 +9,6 @@ TaskMaster is a Node.js application for managing tasks. This application provide
 - API documentation using Swagger
 - Docker containerization for easy deployment
 
-## Table of Contents
-
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [API Documentation](#api-documentation)
-4. [Docker Setup](#docker-setup)
-
 
 ## 1. Installation
 
@@ -27,12 +20,14 @@ TaskMaster is a Node.js application for managing tasks. This application provide
 
 ### Steps
 
-1. **Clone the Repository and Install Dependencies**
+ **Clone the Repository and Install Dependencies**
 
    ```bash
    git clone https://github.com/your-username/taskmaster.git
    cd taskmaster
    npm install
+```
+
 
 ## 2. Usage
 
@@ -40,9 +35,11 @@ TaskMaster is a Node.js application for managing tasks. This application provide
 To start the application in development mode, use:
 nodemon
 
+
 ### 3. API Documentation
 The API documentation is available via Swagger UI:
 Swagger UI: http://localhost:8000/api-docs
+
 
 ## 4 Docker Setup
 
