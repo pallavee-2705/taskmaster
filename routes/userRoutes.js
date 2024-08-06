@@ -43,17 +43,9 @@ router.post('/login', async (req,res) => {
         res.status(400).send({error: err.message});
     }
 });
+//testing user routes
 router.get('/', (req, res) =>{
     res.send('User routes are working');
-});
-
-
-//creating modules for login and register
-router.post('/register', async (req, res) => {
-    const{name, email, password} = req.body;
-});
-router.post('/login', async (req, res) =>{
-
 });
 
 module.exports = router;
